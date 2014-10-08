@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru">
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+    </head>
+    <body style="max-width: 90%; margin:0 auto;">
+        <table border="1" cellspacing="0" style="width: 100%;"></table>
+        <div style="font-size:2em; margin: 0 25% 0 25%; width: 50%; text-align: center;">
+            <a id="left-arrow" href="#" style="text-decoration:none;"><b>&larr;</b></a>
+            <a id="right-arrow" href="#" style="text-decoration:none;"><b>&rarr;</b></a>
+        </div>
+    </body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var table = "";
+        var counter = 1;
+        for(i=1; i<9; i++){
+            table += "<tr align='center'>";
+            for(j=1; j<9; j++){
+                table += "<td><img pic-id='" + counter + "' src='img/" + counter + ".jpg' /></td>";
+                counter++;
+            }
+            table += "</tr>";
+        }
+        $("table").html(table);
+
+        $("#right-arrow").click(function(){
+            $("img").each(function(){
+                var picId = parseInt($(this).attr("pic-id"));
+                if(picId == 1){
+                    $(this).attr("pic-id", 64);
+                    $(this).attr("src", "img/64.jpg");
+                }
+                else{
+                    picId = picId - 1;
+                    $(this).attr("pic-id", picId);
+                    $(this).attr("src", "img/" + picId + ".jpg");
+                }
+            });
+
+            return false;
+        });
+
+        $("#left-arrow").click(function(){
+            $("img").each(function(){
+                var picId = parseInt($(this).attr("pic-id"));
+                if(picId == 64){
+                    $(this).attr("pic-id", 1);
+                    $(this).attr("src", "img/1.jpg");
+                }
+                else{
+                    picId = picId + 1;
+                    $(this).attr("pic-id", picId);
+                    $(this).attr("src", "img/" + picId + ".jpg");
+                }
+            });
+
+            return false;
+        });
+    })
+</script>
